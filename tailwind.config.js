@@ -5,7 +5,18 @@ export default {
     "./src/**/*.{js,jsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        "60%": "60%",
+        "70%": "70%",
+      },
+      letterSpacing: {
+        widest: '0.515em',
+      },
+      borderRadius: {
+        "Newsletter": "30px 400px 30px 30px"
+      },
+    },
   },
   plugins: [],
 }

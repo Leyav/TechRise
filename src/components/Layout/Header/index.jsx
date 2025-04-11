@@ -11,6 +11,9 @@ const Header = () => {
   const mobileMenuRef = useRef(null);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const signInRef = useRef(null);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const signUpRef = useRef(null);
+  const [sticky, setSticky] = useState(false);
 
   const handleClickOutside = (event) => {
     if (
@@ -21,15 +24,28 @@ const Header = () => {
     }
   };
 
+  const handleScroll = () => {
+    setSticky(window.scrollY >= 20);
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [navbarOpen, isSignInOpen, isSignUpOpen]);
 
   return (
-    <header className="fixed top-0 z-40 w-full transition-all duration-300 bg-white shadow-md py-4">
+    <header className={`fixed top-0 z-40 w-full transition-all duration-300 ${sticky ? " shadow-lg bg-white dark:bg-gray-600 py-4" : "shadow-none py-8"
+    }`}>
       <div className="lg:py-0 py-2">
         <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md flex items-center justify-between px-4">
           {/* Logo */}
@@ -61,7 +77,7 @@ const Header = () => {
               +1(909) 235-9814
             </Link>
             <button
-        className="hidden lg:block text-primary bg-primary/15 hover:text-white hover:bg-primary font-medium text-lg py-4 px-8 rounded-full"
+        className="hidden lg:block text-red-500 bg-red-100 hover:text-white hover:bg-red-500 font-medium text-lg py-4 px-8 rounded-full"
         onClick={() => setIsSignInOpen(true)}
       >
         Sign In
@@ -88,9 +104,35 @@ const Header = () => {
           </div>
         </div>
       )}
-            <button className="hidden lg:block px-5 py-2 rounded-full bg-red-500 text-white font-medium hover:bg-red-600 transition">
-              Sign Up
+                <button
+        className="hidden lg:block bg-red-500 text-white hover:bg-red-100 hover:text-red-500 font-medium text-lg py-4 px-8 rounded-full"
+        onClick={() => setIsSignUpOpen(true)}
+      >
+        Sign Up
+      </button>
+
+      {isSignUpOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div
+            ref={signUpRef}
+            className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-dark_grey bg-opacity-90 backdrop-blur-md px-8 pt-14 pb-8 text-center"
+          >
+            <button
+              onClick={() => setIsSignUpOpen(false)}
+              className="absolute top-0 right-0 mr-8 mt-8 dark:invert"
+              aria-label="Close Sign Up Modal"
+            >
+              <Icon
+                icon="tabler:currency-xrp"
+                className="text-white hover:text-primary text-24 inline-block me-2"
+              />
             </button>
+
+            {/* <SignUp /> */}
+          </div>
+        </div>
+      )}
+
 
             {/* Mobile Menu Toggle */}
             <button
