@@ -7,8 +7,8 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <img src="/logo.png" alt="Chef's Logo" className="w-8 h-8" />
-            <span className="font-bold text-lg">Chef's Kitchen.</span>
+            <img src="/images/logo/mLogo.svg" alt="Logo" className="w-8 h-8" />
+            <span className="font-bold text-lg">TechRise</span>
           </div>
           <p className="text-sm text-gray-600 mb-6">
             Open an account in minutes, get full financial control for much longer.
@@ -43,7 +43,6 @@ const Footer = () => {
             <li>Help/FAQ</li>
             <li>Press</li>
             <li>Affiliates</li>
-            <li>Hotel owners</li>
             <li>Partners</li>
           </ul>
         </div>
@@ -53,15 +52,15 @@ const Footer = () => {
           <ul className="space-y-2 text-gray-600 text-sm">
             <li>Home</li>
             <li>About Us</li>
-            <li>Recipe</li>
-            <li>Gallery</li>
+            <li>Categories</li>
+            <li>Reviews</li>
           </ul>
         </div>
       </div>
 
       <div className="mt-10 border-t pt-6 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center">
         <p>
-          ©2025 - Chef’s kitchen. Distributed By ThemeWagon and Developed by GetNextjsTemplates
+          ©2025 - TechRise. Distributed and Developed By LeyTech
         </p>
         <div className="flex gap-4 mt-2 md:mt-0">
           <span>Privacy policy</span>

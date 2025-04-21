@@ -5,8 +5,9 @@ import HeaderLink from './Navigation/HeaderLink';
 import { headerData } from "./Navigation/MenuData";
 import Logo from '../../Common/Logo'
 import Signin from "../../../pages/Auth/SignIn";
+import SignUp from "../../../pages/Auth/SignUp";
 
-const navItems = ["Home", "About Us", "Recipe", "Gallery"];
+const navItems = ["Home", "About Us", "Categories", "Reviews"];
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -121,7 +122,7 @@ const Header = () => {
               />
             </button>
 
-            {/* <SignUp /> */}
+            <SignUp />
           </div>
         </div>
       )}

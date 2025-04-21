@@ -62,7 +62,7 @@ const HeaderLink = ({ item }) => {
               to={subItem.href}
               className={`block px-4 py-2 ${
                 path === subItem.href
-                  ? "bg-primary text-white"
+                  ? "bg-primaryPurple text-white"
                   : "text-black dark:text-white hover:bg-primary"
               }`}
             >
