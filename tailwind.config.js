@@ -13,6 +13,10 @@ export default {
       letterSpacing: {
         widest: '0.515em',
       },
+      colors: {
+        primaryPurple: '#9B4DDA',
+        lightPurple: '#C492EA',
+      },
       borderRadius: {
         "Newsletter": "30px 400px 30px 30px"
       },

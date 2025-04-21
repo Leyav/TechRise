@@ -3,6 +3,8 @@ import { Icon } from "@iconify/react";
 import { Link } from 'react-router-dom';
 import HeaderLink from './Navigation/HeaderLink';
 import { headerData } from "./Navigation/MenuData";
+import Logo from '../../Common/Logo'
+import Signin from "../../../pages/Auth/SignIn";
 
 const navItems = ["Home", "About Us", "Recipe", "Gallery"];
 
@@ -49,16 +51,7 @@ const Header = () => {
       <div className="lg:py-0 py-2">
         <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md flex items-center justify-between px-4">
           {/* Logo */}
-          <Link to="/" className='flex items-center text-black dark:text-white text-2xl font-semibold gap-4'>
-            <img
-              src="/images/logo/mLogo.svg"
-              alt="logo"
-              width={160}
-              height={50}
-              style={{ width: 'auto', height: 'auto' }}
-            />
-            TechRise
-          </Link>
+          <Logo/>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex flex-grow items-center gap-8 justify-center">
@@ -77,7 +70,7 @@ const Header = () => {
               +1(909) 235-9814
             </Link>
             <button
-        className="hidden lg:block text-red-500 bg-red-100 hover:text-white hover:bg-red-500 font-medium text-lg py-4 px-8 rounded-full"
+        className="hidden lg:block text-primaryPurple bg-lightPurple hover:text-white hover:bg-primaryPurple font-medium text-lg py-4 px-8 rounded-full"
         onClick={() => setIsSignInOpen(true)}
       >
         Sign In
@@ -100,12 +93,12 @@ const Header = () => {
               />
             </button>
 
-            {/* <Signin /> */}
+            <Signin />
           </div>
         </div>
       )}
                 <button
-        className="hidden lg:block bg-red-500 text-white hover:bg-red-100 hover:text-red-500 font-medium text-lg py-4 px-8 rounded-full"
+        className="hidden lg:block bg-primaryPurple text-white hover:bg-lightPurple hover:text-primaryPurple font-medium text-lg py-4 px-8 rounded-full"
         onClick={() => setIsSignUpOpen(true)}
       >
         Sign Up
@@ -164,19 +157,19 @@ const Header = () => {
             {navItems.map((item) => (
               <span
                 key={item}
-                className="cursor-pointer text-gray-700 hover:text-red-500"
+                className="cursor-pointer text-gray-700 hover:text-primaryPurple"
               >
                 {item}
               </span>
             ))}
             <button
-              className="w-full px-4 py-2 rounded-lg bg-red-100 text-red-500 font-medium hover:bg-red-200 transition"
+              className="w-full px-4 py-2 rounded-lg bg-lightPurple text-primaryPurple font-medium hover:bg-red-200 transition"
               onClick={() => setNavbarOpen(false)}
             >
               Sign In
             </button>
             <button
-              className="w-full px-4 py-2 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 transition"
+              className="w-full px-4 py-2 rounded-lg bg-primaryPurple text-white font-medium hover:bg-red-600 transition"
               onClick={() => setNavbarOpen(false)}
             >
               Sign Up

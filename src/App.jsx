@@ -15,7 +15,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="app-container" style={{ fontFamily: '"Poppins", sans-serif' }}>
+    <div  style={{ fontFamily: '"Poppins", sans-serif' }}>
       
         <Header />
         <ScrollToTop />
