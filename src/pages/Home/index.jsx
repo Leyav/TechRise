@@ -1,33 +1,33 @@
 import React from "react";
+import Hero from "./components/Hero";
 
-const HeroSection = () => {
+// const HeroSection = () => {
+//   return (
+//     <section id="home-section" className='bg-gray-50 dark:bg-gray-700'>
+//       <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md px-4 pt-20">
+//         <h1 className="text-4xl md:text-6xl font-bold mb-4 text-red-600">
+//           Welcome to Interview Crackers 💼
+//         </h1>
+//         <p className="text-lg text-gray-600 max-w-xl mx-auto">
+//           Master the art of interviews with expert questions, winning answers, and smart tips.
+//           Get started on your journey to crack every interview with confidence today.
+//         </p>
+//         <button className="mt-6 px-6 py-3 bg-primaryPurple text-white rounded-full font-semibold hover:bg-red-600">
+//           Explore Recipes
+//         </button>
+//       </div>
+//     </section>
+//   );
+// };
+
+function Home() {
+
+
   return (
-    <section className="min-h-[80vh] flex items-center justify-center text-center px-4 bg-gradient-to-br from-lightPurple to-white">
-      <div>
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-red-600">
-          Welcome to Chef’s Kitchen 🍽️
-        </h1>
-        <p className="text-lg text-gray-600 max-w-xl mx-auto">
-          Explore delicious recipes, cooking tips, and culinary inspiration. Get started with your kitchen journey today.
-        </p>
-        <button className="mt-6 px-6 py-3 bg-primaryPurple text-white rounded-full font-semibold hover:bg-red-600">
-          Explore Recipes
-        </button>
-      </div>
-    </section>
+    <main>
+      <Hero />  
+    </main>
   );
-};
+}
 
-const App = () => {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        <HeroSection />
-        {/* Add other sections here */}
-      </main>
-
-    </div>
-  );
-};
-
-export default App;
+export default Home;

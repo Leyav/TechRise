@@ -53,7 +53,7 @@ const Footer = () => {
             <li>Home</li>
             <li>About Us</li>
             <li>Categories</li>
-            <li>Reviews</li>
+            <li>Courses</li>
           </ul>
         </div>
       </div>

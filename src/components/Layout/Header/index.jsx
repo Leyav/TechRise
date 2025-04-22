@@ -7,7 +7,7 @@ import Logo from '../../Common/Logo'
 import Signin from "../../../pages/Auth/SignIn";
 import SignUp from "../../../pages/Auth/SignUp";
 
-const navItems = ["Home", "About Us", "Categories", "Reviews"];
+const navItems = ["Home", "About Us", "Categories", "Courses"];
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
