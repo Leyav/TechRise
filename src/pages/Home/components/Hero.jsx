@@ -31,7 +31,7 @@ const Hero = () => {
 
                     <div className="col-span-6 flex justify-center relative">
                         <div className="flex bg-white p-2 gap-5 items-center bottom-10 left-10 rounded-xl absolute">
-                            <img src="/images/home/qstns.svg" alt="qstn-image" width={68} height={68} />
+                            <img src="/images/home/qstns.png" alt="qstn-image" width={68} height={68} />
                             <p className="text-lg font-normal">
                                 More than 500+ <br /> Questions.
                             </p>
