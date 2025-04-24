@@ -1,24 +1,24 @@
 // data.js
 export const FeaturesData = [
     {
-      imgSrc: '/images/features/featureOne.svg',
+      imgSrc: '/images/home/features/feature1.svg',
       heading: "Interview Prep",
-      subheading: "Sed ut perspiciatis unde omnis iste natus error",
+      subheading: "Get Ready to Impress – Strategies, and Mock Scenarios to Ace Every Interview.",
     },
     {
-      imgSrc: '/images/features/featureTwo.svg',
+      imgSrc: '/images/home/features/feature2.svg',
       heading: "Coding Challenges",
-      subheading: "Sed ut perspiciatis unde omnis iste natus error",
+      subheading: "Sharpen Your Logic – Practice Real-World Problems and Master Core Algorithms.",
     },
     {
       imgSrc: '/images/features/featureThree.svg',
       heading: "Resume Builder / Tips",
-      subheading: "Sed ut perspiciatis unde omnis iste natus error",
+      subheading: "Craft a Resume That Stands Out – From Format to Keywords.",
     },
     {
       imgSrc: '/images/features/featureFour.svg',
       heading: "HR Round Preparation",
-      subheading: "Sed ut perspiciatis unde omnis iste natus error",
+      subheading: "Speak with Confidence – Tackle Common HR Questions.",
     }
   ];
   
