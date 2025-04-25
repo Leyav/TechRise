@@ -1,0 +1,7 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_7_51015)">
+  <circle cx="128" cy="85" r="55"  fill="white" stroke="#4CAF50" stroke-width="4"/>
+  </g>
+  <path d="M30 30h40c2.2 0 4 1.8 4 4v24c0 2.2-1.8 4-4 4H44l-10 10v-10H30c-2.2 0-4-1.8-4-4V34c0-2.2 1.8-4 4-4z" fill="#A5D6A7" transform="translate(75, 35)" />
+  <text x="50%" y="37%" dominant-baseline="middle" text-anchor="middle" font-size="28" font-family="Arial" fill="#2E7D32">?</text>
+</svg>
