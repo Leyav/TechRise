@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
-import { FeaturesData } from './data'; // Adjust the path based on your project structure
+import { FeaturesData } from './data'; 
 
 const Features = () => {
   return (

@@ -11,12 +11,12 @@ export const FeaturesData = [
       subheading: "Sharpen Your Logic – Practice Real-World Problems and Master Core Algorithms.",
     },
     {
-      imgSrc: '/images/features/featureThree.svg',
+      imgSrc: '/images/home/features/feature3.svg',
       heading: "Resume Builder / Tips",
       subheading: "Craft a Resume That Stands Out – From Format to Keywords.",
     },
     {
-      imgSrc: '/images/features/featureFour.svg',
+      imgSrc: '/images/home/features/feature4.svg',
       heading: "HR Round Preparation",
       subheading: "Speak with Confidence – Tackle Common HR Questions.",
     }
