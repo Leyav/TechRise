@@ -37,7 +37,7 @@ const Expert = () => {
     };
 
     return (
-        <section style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
+        <section style={{ backgroundColor: "rgba(155, 77, 218, 0.25)" }}>
             <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
                 <div className="text-center">
                     <p className="text-primary text-lg font-normal mb-3 tracking-widest uppercase">EXPERT CHEFS</p>
@@ -59,7 +59,7 @@ const Expert = () => {
                                     />
                                     <div style={{ position: "absolute", top: "50%", right: "2%" }}>
                                         <img
-                                            src="/images/Expert/Linkedin.svg"
+                                            src="/images/home/expert/Linkedin.svg"
                                             alt="linkedin"
                                             width={220}
                                             height={120}
