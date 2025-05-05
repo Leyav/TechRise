@@ -5,7 +5,7 @@ import SocialSignIn from "../SocialSignIn";
 import Logo from "../../../components/Common/Logo";
 import Loader from "../../../components/Common/Loader";
 
-const Signin = () => {
+const Signin = ({ setShowSignin }) => {
   const navigate = useNavigate();
 
   const [loginData, setLoginData] = useState({
@@ -18,34 +18,64 @@ const Signin = () => {
   const loginUser = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    // Example login API (replace this with your backend logic)
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        toast.error(result.message || "Login failed");
-        setLoading(false);
-        return;
-      }
-
-      toast.success("Login successful");
+  
+    const { email, password } = loginData;
+  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex =
+      /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+  
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email format");
       setLoading(false);
-      navigate("/");
-    } catch (err) {
-      console.error(err.message);
-      toast.error("Something went wrong");
-      setLoading(false);
+      return;
     }
+  
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must be at least 8 characters, include an uppercase letter, number, and special character"
+      );
+      setLoading(false);
+      return;
+    }
+  
+    // ✅ If API is not ready, navigate to user page with dummy ID
+    const dummyUserId = 1;
+    toast.success("Login successful (dummy)");
+    setLoading(false);
+    setShowSignin();
+    navigate(`/user/${dummyUserId}`);
+  
+    // // Uncomment this when real API is ready
+    // try {
+    //   const response = await fetch("/api/login", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(loginData),
+    //   });
+  
+    //   const result = await response.json();
+  
+    //   if (!response.ok) {
+    //     toast.error(result.message || "Login failed");
+    //     setLoading(false);
+    //     return;
+    //   }
+  
+    //   toast.success("Login successful");
+    //   setLoading(false);
+    //   const userId = result.user?.id; // Assume backend returns user object
+    //   navigate(`/user/${userId}`);
+    // } catch (err) {
+    //   console.error(err.message);
+    //   toast.error("Something went wrong");
+    //   setLoading(false);
+    // }
   };
+  
+  
 
   return (
     <>
@@ -56,7 +86,7 @@ const Signin = () => {
       <SocialSignIn />
 
       <span className="z-1 relative my-8 block text-center before:content-[''] before:absolute before:h-px before:w-40% before:bg-dark_border before:bg-opacity-60 before:left-0 before:top-3 after:content-[''] after:absolute after:h-px after:w-40% after:bg-dark_border after:bg-opacity-60 after:top-3 after:right-0">
-        <span className="text-body-secondary relative z-10 inline-block px-3 text-base text-black dark:text-white">
+        <span className="text-body-secondary relative z-10 inline-block px-3 text-base text-black dark:text-black">
           OR
         </span>
       </span>
@@ -69,7 +99,7 @@ const Signin = () => {
             onChange={(e) =>
               setLoginData({ ...loginData, email: e.target.value })
             }
-            className="w-full rounded-md border border-dark_border border-opacity-60 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-white dark:focus:border-primary"
+            className="w-full rounded-md border border-dark_border border-opacity-60 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-black dark:focus:border-primary"
           />
         </div>
         <div className="mb-[22px]">
@@ -79,7 +109,7 @@ const Signin = () => {
             onChange={(e) =>
               setLoginData({ ...loginData, password: e.target.value })
             }
-            className="w-full rounded-md border border-dark_border border-opacity-60 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-white dark:focus:border-primary"
+            className="w-full rounded-md border border-dark_border border-opacity-60 border-solid bg-transparent px-5 py-3 text-base text-dark outline-none transition placeholder:text-grey focus:border-primary focus-visible:shadow-none text-black dark:focus:border-primary"
           />
         </div>
         <div className="mb-9">

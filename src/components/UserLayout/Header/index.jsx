@@ -1,21 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { Link } from 'react-router-dom';
-import HeaderLink from './Navigation/HeaderLink';
+import HeaderLink from '../../Layout/Header/Navigation/HeaderLink';
 import { headerData } from "./Navigation/MenuData";
 import Logo from '../../Common/Logo'
-import Signin from "../../../pages/Auth/SignIn";
-import SignUp from "../../../pages/Auth/SignUp";
 
 const navItems = ["Home", "About Us", "Categories", "Courses"];
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const mobileMenuRef = useRef(null);
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const signInRef = useRef(null);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const signUpRef = useRef(null);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef(null);
   const [sticky, setSticky] = useState(false);
 
   const handleClickOutside = (event) => {
@@ -25,7 +21,15 @@ const Header = () => {
     ) {
       setNavbarOpen(false);
     }
+  
+    if (
+      profileRef.current &&
+      !profileRef.current.contains(event.target)
+    ) {
+      setProfileOpen(false);
+    }
   };
+  
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 20);
@@ -44,7 +48,7 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [navbarOpen, isSignInOpen, isSignUpOpen]);
+  }, [navbarOpen]);
 
   return (
     <header className={`fixed top-0 z-40 w-full transition-all duration-300 ${sticky ? " shadow-lg bg-white dark:bg-gray-600 py-4" : "shadow-none py-8"
@@ -70,63 +74,9 @@ const Header = () => {
               />
               +1(909) 235-9814
             </Link>
-            <button
-        className="hidden lg:block text-primaryPurple bg-lightPurple hover:text-white hover:bg-primaryPurple font-medium text-lg py-4 px-8 rounded-full"
-        onClick={() => setIsSignInOpen(true)}
-      >
-        Sign In
-      </button>
+ 
 
-      {isSignInOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div
-            ref={signInRef}
-            className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg px-8 pt-14 pb-8 text-center bg-white dark:bg-gray-600 bg-opacity-90 backdrop-blur-md"
-          >
-            <button
-              onClick={() => setIsSignInOpen(false)}
-              className="absolute top-0 right-0 mr-8 mt-8 dark:invert"
-              aria-label="Close Sign In Modal"
-            >
-              <Icon
-                icon="tabler:currency-xrp"
-                className="text-black hover:text-primary text-24 inline-block me-2"
-              />
-            </button>
-
-            <Signin setShowSignin={() => setIsSignInOpen(false)}/>
-          </div>
-        </div>
-      )}
-                <button
-        className="hidden lg:block bg-primaryPurple text-white hover:bg-lightPurple hover:text-primaryPurple font-medium text-lg py-4 px-8 rounded-full"
-        onClick={() => setIsSignUpOpen(true)}
-      >
-        Sign Up
-      </button>
-
-      {isSignUpOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div
-            ref={signUpRef}
-            className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-dark_grey bg-opacity-90 backdrop-blur-md px-8 pt-14 pb-8 text-center"
-          >
-            <button
-              onClick={() => setIsSignUpOpen(false)}
-              className="absolute top-0 right-0 mr-8 mt-8 dark:invert"
-              aria-label="Close Sign Up Modal"
-            >
-              <Icon
-                icon="tabler:currency-xrp"
-                className="text-white hover:text-primary text-24 inline-block me-2"
-              />
-            </button>
-
-            <SignUp />
-          </div>
-        </div>
-      )}
-
+      
 
             {/* Mobile Menu Toggle */}
             <button
@@ -139,6 +89,41 @@ const Header = () => {
               <span className="block w-6 h-0.5 bg-black mt-1.5"></span>
             </button>
           </div>
+
+          <div className="relative" ref={profileRef}>
+  <button
+    onClick={() => setProfileOpen(!profileOpen)}
+    className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary"
+  >
+    <Icon icon="mdi:account-circle" className="text-3xl text-gray-700" />
+  </button>
+
+  {profileOpen && (
+    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+      <Link
+        to="/edit-profile"
+        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+      >
+        ✏️ Edit Profile
+      </Link>
+      <Link
+        to="/settings"
+        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+      >
+        ⚙️ Settings
+      </Link>
+      <button
+        onClick={() => {
+          console.log("Sign out clicked");
+        }}
+        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-600"
+      >
+        🚪 Sign Out
+      </button>
+    </div>
+  )}
+</div>
+
         </div>
 
         {/* Mobile Nav */}
@@ -162,19 +147,7 @@ const Header = () => {
               >
                 {item}
               </span>
-            ))}
-            <button
-              className="w-full px-4 py-2 rounded-lg bg-lightPurple text-primaryPurple font-medium hover:bg-red-200 transition"
-              onClick={() => setNavbarOpen(false)}
-            >
-              Sign In
-            </button>
-            <button
-              className="w-full px-4 py-2 rounded-lg bg-primaryPurple text-white font-medium hover:bg-red-600 transition"
-              onClick={() => setNavbarOpen(false)}
-            >
-              Sign Up
-            </button>
+            ))}       
           </nav>
         </div>
 
