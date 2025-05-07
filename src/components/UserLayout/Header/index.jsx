@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import HeaderLink from '../../Layout/Header/Navigation/HeaderLink';
 import { headerData } from "./Navigation/MenuData";
 import Logo from '../../Common/Logo'
+import './index.css'
 
 const navItems = ["Home", "About Us", "Categories", "Courses"];
 
@@ -13,6 +14,8 @@ const Header = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef(null);
   const [sticky, setSticky] = useState(false);
+  const [hasNotification, setHasNotification] = useState(true); 
+
 
   const handleClickOutside = (event) => {
     if (
@@ -75,6 +78,19 @@ const Header = () => {
               +1(909) 235-9814
             </Link>
  
+            <div className="relative">
+  <button
+    className={`relative text-2xl text-gray-700 focus:outline-none ${
+      hasNotification ? "animate-ping-slow" : ""
+    }`}
+    aria-label="Notifications"
+  >
+    <Icon icon="mdi:bell-outline" />
+    {hasNotification && (
+      <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-600 ring-2 ring-white"></span>
+    )}
+  </button>
+</div>
 
       
 
