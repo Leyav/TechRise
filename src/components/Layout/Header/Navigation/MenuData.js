@@ -1,7 +1,6 @@
 export const headerData = [
-    { label: "Home", href: "#home-section" },
-    { label: "About Us", href: "#about-section" },
-    { label: "Categories", href: "#cook-section" },
-    { label: "Courses", href: "#gallery-section" },
-  ];
-  
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Categories", href: "/categories" },
+  { label: "Courses", href: "/courses" },
+];

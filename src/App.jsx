@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 // import About from "./pages/About";
 // import Contact from "./pages/Contact";
 // import Login from "./pages/Login";
-// import Dashboard from "./pages/Dashboard";
+import Categories from "./pages/Categories";
 
 import UserPage from "./pages/User";
 
@@ -27,24 +27,26 @@ function App() {
     location.pathname.startsWith(path)
   );
   return (
-    <div  style={{ fontFamily: '"Poppins", sans-serif' }}>
-      
-      {!shouldHideHeaderFooter && <Header />}
-      {shouldHideHeaderFooter && < UserHeader/>}
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/user/:id" element={<UserPage />} />
+    <div style={{ fontFamily: '"Poppins", sans-serif' }}>
 
-          {/*
+      {!shouldHideHeaderFooter && <Header />}
+      {shouldHideHeaderFooter && < UserHeader />}
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/user/:id" element={<UserPage />} />
+
+        {/*
             Uncomment or add additional routes below:
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            
           */}
-        </Routes>
-        <Footer />
+        <Route path="/categories" element={<Categories />} />
+        {/* <Route path="/frontend/reactjs" element={<ReactjsPage/>} /> */}
+      </Routes>
+      <Footer />
     </div>
   );
 }
