@@ -1,56 +1,65 @@
 import React, { useState } from 'react';
 import { categories } from './CategoryData';
-import CategoryAccessModal from './CategoryAccessModal';
+import CategoryAccessModal from './CategoryAccessModal'
 
 export default function CategoryPage() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+    const [expandedCategory, setExpandedCategory] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
+    const isSignedIn = false;
 
-  const handleAccess = (category, subcategory) => {
-    if (!isSignedIn) {
-      setModalOpen(true);
-      return;
-    }
-    // else navigate or show data
-    alert(`Accessing ${subcategory} under ${category}`);
-  };
+    const handleToggle = (category) => {
+        setExpandedCategory(prev => prev === category ? null : category);
+    };
 
-  return (
-     <div className="pt-32 px-4 pb-12 max-w-5xl mx-auto">
-         <CategoryAccessModal open={modalOpen} onClose={() => setModalOpen(false)} />
-      {!isSignedIn && (
-        <div className="mb-4 p-3 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded text-center">
-          Please sign in to access category details.
+    const handleAccess = (category, subcategory) => {
+        if (!isSignedIn) {
+            setModalOpen(true);
+            return;
+        }
+        // else navigate or show data
+        alert(`Accessing ${subcategory} under ${category}`);
+    };
+
+    return (
+        <div className="container pt-24 px-6 max-w-screen-2xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-center text-blue-700 tracking-tight mb-4">
+                🚀 Explore Categories
+            </h1>
+            <p className="text-center text-gray-600 max-w-3xl mx-auto mb-8">
+                Find interview questions, answers, and resources for every tech stack. Click a category to get started.
+            </p>
+            <div className="space-y-4">
+                {Object.entries(categories).map(([category, data]) => (
+                    <div key={category} className="border rounded-xl">
+                        <button
+                            onClick={() => handleToggle(category)}
+                            className="w-full flex justify-between items-center px-6 py-4 text-left text-lg font-medium text-gray-800 hover:bg-gray-100"
+                        >
+                            {category}
+                            <span>{expandedCategory === category ? "−" : "+"}</span>
+                        </button>
+
+                        {expandedCategory === category && (
+                            <div className="px-6 pb-4 text-gray-600">
+                                <p className="italic text-sm mb-3">{data.description}</p>
+                                <div className="flex flex-wrap gap-3">
+                                    {data.items.map((item) => (
+                                        <button
+                                            key={item}
+                                            onClick={() => handleAccess(category, item)}
+                                            className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded hover:bg-blue-200"
+                                        >
+                                            {item}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+
+            <CategoryAccessModal open={modalOpen} onClose={() => setModalOpen(false)} />
         </div>
-      )}
-
-      {/* <button
-        onClick={() => setIsSignedIn(!isSignedIn)}
-        className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-      >
-        {isSignedIn ? 'Sign Out' : 'Sign In'}
-      </button> */}
-
-      <div className="space-y-6">
-        {Object.entries(categories).map(([category, data]) => (
-          <div key={category} className="border rounded p-4 shadow-sm">
-            <h2 className="text-2xl font-semibold mb-3">{category}</h2>
-             <p className="mb-4 text-gray-600 italic">{data.description}</p>
-            <ul className="list-disc list-inside space-y-1">
-              {data.items.map((sub) => (
-                <li key={sub}>
-                  <button
-                    onClick={() => handleAccess(category, sub)}
-                    className="text-blue-600 hover:underline focus:outline-none"
-                  >
-                    {sub}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    );
 }

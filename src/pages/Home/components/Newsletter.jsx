@@ -39,7 +39,7 @@ const Newsletter = () => {
 
                     <div className="col-span-5 relative hidden md:block">
                         <div>
-                            <img src="/images/home/Newsletter/tech.svg" alt="tech-image" width={626} height={602} className='-mt-24' />
+                            <img src="/images/home/Newsletter/tech.png" alt="tech-image" width={626} height={602} className='-mt-24' />
                         </div>                       
                         <div className="absolute bottom-[10%] left-[0%]">
                             <img src="/images/home/Newsletter/yellow.svg" alt="yellow-image" width={59} height={59} />
