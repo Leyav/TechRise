@@ -6,15 +6,15 @@ import Footer from "./components/Layout/Footer";
 import UserHeader from "./components/UserLayout/Header";
 import ScrollToTop from "./components/Layout/ScrollToTop";
 
-// Import your page components
 import Home from "./pages/Home";
-// Uncomment or add additional pages as needed
-// import About from "./pages/About";
+
 // import Contact from "./pages/Contact";
 // import Login from "./pages/Login";
+import AboutUs from "./pages/AboutUs";
 import Categories from "./pages/Categories";
 
 import UserPage from "./pages/User";
+
 
 function App() {
   const location = useLocation();
@@ -38,11 +38,12 @@ function App() {
 
         {/*
             Uncomment or add additional routes below:
-            <Route path="/about" element={<About />} />
+            
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             
           */}
+          <Route path="/about_us" element={<AboutUs />} />
         <Route path="/categories" element={<Categories />} />
         {/* <Route path="/frontend/reactjs" element={<ReactjsPage/>} /> */}
       </Routes>

@@ -26,32 +26,32 @@ export const FeaturesData = [
   
   export const ExpertData = [
     {
-      profession: 'Senior Chef',
+      profession: 'Senior Software Engineer',
       name: 'Shoo Thar Mien',
       imgSrc: '/images/home/expert/avatar1.png',
     },
     {
-      profession: 'Junior Chef',
+      profession: 'Lead',
       name: 'Shoo Thar Mien',
       imgSrc: '/images/home/expert/avatar3.png',
     },
     {
-      profession: 'Junior Chef',
+      profession: 'Senior Backend Developer',
       name: 'Shoo Thar Mien',
       imgSrc: '/images/home/expert/avatar2.png',
     },
     {
-      profession: 'Junior Chef',
+      profession: 'Senior Tester',
       name: 'Shoo Thar Mien',
       imgSrc: '/images/home/expert/avatar3.png',
     },
     {
-      profession: 'Senior Chef',
+      profession: 'Junior Developer',
       name: 'Shoo Thar Mien',
       imgSrc: '/images/home/expert/avatar1.png',
     },
     {
-      profession: 'Junior Chef',
+      profession: 'HR Intern',
       name: 'Shoo Thar Mien',
       imgSrc: '/images/home/expert/avatar2.png',
     }

@@ -7,7 +7,7 @@ import Logo from '../../Common/Logo';
 import SignInModal from "./Modals/SignInModal";
 import SignUpModal from "./Modals/SignUpModal";
 
-const navItems = ["Home", "About Us", "Categories", "Courses"];
+const navItems = ["Home", "About Us", "Categories"/* , "Courses" */];
 
 const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);

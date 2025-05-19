@@ -40,7 +40,7 @@ const Expert = () => {
         <section style={{ backgroundColor: "rgba(155, 77, 218, 0.25)" }}>
             <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
                 <div className="text-center">
-                    <p className="text-primary text-lg font-normal mb-3 tracking-widest uppercase">EXPERT CHEFS</p>
+                    <p className="text-primary text-lg font-normal mb-3 tracking-widest uppercase">TECH EXPERTS</p>
                     <h2 className="text-3xl lg:text-5xl font-semibold text-black dark:text-white">
                         Let's meet the expert.
                     </h2>
