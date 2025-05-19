@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { Link } from 'react-router-dom';
 import HeaderLink from './Navigation/HeaderLink';
 import { headerData } from "./Navigation/MenuData";
-import Logo from '../../Common/Logo'
-import Signin from "../../../pages/Auth/SignIn";
-import SignUp from "../../../pages/Auth/SignUp";
+import Logo from '../../Common/Logo';
+import SignInModal from "./Modals/SignInModal";
+import SignUpModal from "./Modals/SignUpModal";
 
 const navItems = ["Home", "About Us", "Categories", "Courses"];
 
@@ -13,9 +13,7 @@ const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const mobileMenuRef = useRef(null);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const signInRef = useRef(null);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const signUpRef = useRef(null);
   const [sticky, setSticky] = useState(false);
 
   const handleClickOutside = (event) => {
@@ -49,6 +47,8 @@ const Header = () => {
   return (
     <header className={`fixed top-0 z-40 w-full transition-all duration-300 ${sticky ? " shadow-lg bg-white dark:bg-gray-600 py-4" : "shadow-none py-8"
     }`}>
+      <SignInModal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)} />
+      <SignUpModal isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)} />
       <div className="lg:py-0 py-2">
         <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md flex items-center justify-between px-4">
           {/* Logo */}
@@ -76,57 +76,12 @@ const Header = () => {
       >
         Sign In
       </button>
-
-      {isSignInOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div
-            ref={signInRef}
-            className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg px-8 pt-14 pb-8 text-center bg-white dark:bg-gray-600 bg-opacity-90 backdrop-blur-md"
-          >
-            <button
-              onClick={() => setIsSignInOpen(false)}
-              className="absolute top-0 right-0 mr-8 mt-8 dark:invert"
-              aria-label="Close Sign In Modal"
-            >
-              <Icon
-                icon="tabler:currency-xrp"
-                className="text-black hover:text-primary text-24 inline-block me-2"
-              />
-            </button>
-
-            <Signin setShowSignin={() => setIsSignInOpen(false)}/>
-          </div>
-        </div>
-      )}
                 <button
         className="hidden lg:block bg-primaryPurple text-white hover:bg-lightPurple hover:text-primaryPurple font-medium text-lg py-4 px-8 rounded-full"
         onClick={() => setIsSignUpOpen(true)}
       >
         Sign Up
       </button>
-
-      {isSignUpOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div
-            ref={signUpRef}
-            className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-dark_grey bg-opacity-90 backdrop-blur-md px-8 pt-14 pb-8 text-center"
-          >
-            <button
-              onClick={() => setIsSignUpOpen(false)}
-              className="absolute top-0 right-0 mr-8 mt-8 dark:invert"
-              aria-label="Close Sign Up Modal"
-            >
-              <Icon
-                icon="tabler:currency-xrp"
-                className="text-white hover:text-primary text-24 inline-block me-2"
-              />
-            </button>
-
-            <SignUp />
-          </div>
-        </div>
-      )}
-
 
             {/* Mobile Menu Toggle */}
             <button

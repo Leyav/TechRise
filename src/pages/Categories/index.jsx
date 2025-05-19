@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { categories } from './CategoryData';
 import CategoryAccessModal from './CategoryAccessModal'
+import SignInModal from '../../components/Layout/Header/Modals/SignInModal';
+import SignUpModal from '../../components/Layout/Header/Modals/SignUpModal';
 
 export default function CategoryPage() {
     const [expandedCategory, setExpandedCategory] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const isSignedIn = false;
+    const [signInModalOpen, setSignInModalOpen] = useState(false);
+    const [signUpModalOpen, setSignUpModalOpen] = useState(false);
 
     const handleToggle = (category) => {
         setExpandedCategory(prev => prev === category ? null : category);
@@ -59,7 +63,10 @@ export default function CategoryPage() {
                 ))}
             </div>
 
-            <CategoryAccessModal open={modalOpen} onClose={() => setModalOpen(false)} />
+            <CategoryAccessModal open={modalOpen} onClose={() => setModalOpen(false)} openSignInModal={() => { setSignInModalOpen(true); setModalOpen(false); }} 
+                openSignUpModal={() => { setSignUpModalOpen(true); setModalOpen(false); }}/>
+            <SignInModal isOpen={signInModalOpen} onClose={() => setSignInModalOpen(false)} />
+            <SignUpModal isOpen={signUpModalOpen} onClose={() => setSignUpModalOpen(false)} />
         </div>
     );
 }

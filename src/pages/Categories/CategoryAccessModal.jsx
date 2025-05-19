@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CategoryAccessModal = ({ open, onClose }) => {
+const CategoryAccessModal = ({ open, onClose, openSignInModal, openSignUpModal }) => {
   const navigate = useNavigate();
 
   if (!open) return null;
@@ -15,13 +15,13 @@ const CategoryAccessModal = ({ open, onClose }) => {
         </p>
         <div className="flex justify-center gap-4">
           <button
-            onClick={() => navigate("/signin")}
+            onClick={() => {openSignInModal();}}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
             Sign In
           </button>
           <button
-            onClick={() => navigate("/signup")}
+            onClick={() => {openSignUpModal();}}
             className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
           >
             Sign Up
