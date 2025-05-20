@@ -1,179 +1,76 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Icon } from "@iconify/react";
-import { Link } from 'react-router-dom';
-import HeaderLink from '../../Layout/Header/Navigation/HeaderLink';
-import { headerData } from "./Navigation/MenuData";
-import Logo from '../../Common/Logo'
-import './index.css'
-
-const navItems = ["Home", "About Us", "Categories", "Courses"];
+import  { useEffect, useState } from 'react';
+import { Icon } from '@iconify/react';
+import Logo from '../../Common/Logo';
 
 const Header = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const mobileMenuRef = useRef(null);
-  const [profileOpen, setProfileOpen] = useState(false);
-  const profileRef = useRef(null);
   const [sticky, setSticky] = useState(false);
-  const [hasNotification, setHasNotification] = useState(true); 
-
-
-  const handleClickOutside = (event) => {
-    if (
-      mobileMenuRef.current &&
-      !mobileMenuRef.current.contains(event.target)
-    ) {
-      setNavbarOpen(false);
-    }
-  
-    if (
-      profileRef.current &&
-      !profileRef.current.contains(event.target)
-    ) {
-      setProfileOpen(false);
-    }
-  };
-  
-
-  const handleScroll = () => {
-    setSticky(window.scrollY >= 20);
-  };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    const handleScroll = () => {
+      setSticky(window.scrollY >= 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [navbarOpen]);
 
   return (
-    <header className={`fixed top-0 z-40 w-full transition-all duration-300 ${sticky ? " shadow-lg bg-white dark:bg-gray-600 py-4" : "shadow-none py-8"
-    }`}>
-      <div className="lg:py-0 py-2">
-        <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md flex items-center justify-between px-4">
-          {/* Logo */}
-          <Logo/>
+    <header
+      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 px-6 flex justify-between items-center shadow-sm ${
+        sticky ? 'bg-white py-3 shadow-md' : 'bg-white py-4'
+      }`}
+    >
+      {/* Logo */}
+      <div className="flex items-center">
+        <Logo />
+      </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex flex-grow items-center gap-8 justify-center">
-            {headerData.map((item, index) => (
-              <HeaderLink key={index} item={item} />
-            ))}
-          </nav>
+      {/* Right: Actions */}
+      <div className="flex items-center gap-4">
+        {/* Search */}
+        <input
+          type="text"
+          placeholder="Search..."
+          className="hidden md:block border border-gray-300 rounded-lg px-4 py-1.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
 
-          {/* Contact + Buttons */}
-          <div className="flex items-center gap-4">
-            <Link href="#" className="text-lg font-medium hover:text-primary">
-              <Icon
-                icon="solar:phone-bold"
-                className="text-primary text-3xl inline-block me-2"
-              />
-              +1(909) 235-9814
-            </Link>
- 
-            <div className="relative">
-  <button
-    className={`relative text-2xl text-gray-700 focus:outline-none ${
-      hasNotification ? "animate-ping-slow" : ""
-    }`}
-    aria-label="Notifications"
-  >
-    <Icon icon="mdi:bell-outline" />
-    {hasNotification && (
-      <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-600 ring-2 ring-white"></span>
-    )}
-  </button>
-</div>
-
-      
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setNavbarOpen(!navbarOpen)}
-              className="lg:hidden p-2 rounded-md"
-              aria-label="Toggle mobile menu"
-            >
-              <span className="block w-6 h-0.5 bg-black"></span>
-              <span className="block w-6 h-0.5 bg-black mt-1.5"></span>
-              <span className="block w-6 h-0.5 bg-black mt-1.5"></span>
-            </button>
-          </div>
-
-          <div className="relative" ref={profileRef}>
-  <button
-    onClick={() => setProfileOpen(!profileOpen)}
-    className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary"
-  >
-    <Icon icon="mdi:account-circle" className="text-3xl text-gray-700" />
-  </button>
-
-  {profileOpen && (
-    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
-      <Link
-        to="/edit-profile"
-        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-      >
-        ✏️ Edit Profile
-      </Link>
-      <Link
-        to="/settings"
-        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-      >
-        ⚙️ Settings
-      </Link>
-      <button
-        onClick={() => {
-          console.log("Sign out clicked");
-        }}
-        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-600"
-      >
-        🚪 Sign Out
-      </button>
-    </div>
-  )}
-</div>
-
-        </div>
-
-        {/* Mobile Nav */}
-        <div
-          className={`fixed top-0 right-0 h-full w-full max-w-xs bg-white shadow-lg transform transition-transform duration-300 z-50 ${navbarOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-          ref={mobileMenuRef}
+        {/* Notification Icon */}
+        <button
+          title="Notifications"
+          className="text-gray-600 hover:text-blue-600 p-2 rounded-full hover:bg-gray-100 transition"
         >
-          <div className="flex items-center justify-between p-4">
-            <span className="text-xl font-bold">TechRise</span>
-            <button
-              onClick={() => setNavbarOpen(false)}
-              className="w-6 h-6 bg-[url('/images/closed.svg')] bg-contain bg-no-repeat"
-            ></button>
-          </div>
-          <nav className="flex flex-col items-start p-4 gap-4">
-            {navItems.map((item) => (
-              <span
-                key={item}
-                className="cursor-pointer text-gray-700 hover:text-primaryPurple"
-              >
-                {item}
-              </span>
-            ))}       
-          </nav>
+          <Icon icon="mdi:bell-outline" className="w-5 h-5" />
+        </button>
+
+        {/* Settings Icon */}
+        <button
+          title="Settings"
+          className="text-gray-600 hover:text-blue-600 p-2 rounded-full hover:bg-gray-100 transition"
+        >
+          <Icon icon="mdi:cog-outline" className="w-5 h-5" />
+        </button>
+
+        {/* User Info */}
+        <div className="flex items-center gap-2 bg-gray-100 rounded-full px-3 py-1 hover:shadow transition">
+          <img
+            src="https://i.pravatar.cc/40"
+            alt="User"
+            className="w-8 h-8 rounded-full"
+          />
+          <span className="text-sm font-medium text-gray-800 hidden sm:inline">
+            John Doe
+          </span>
         </div>
 
-        {/* Background Overlay */}
-        {navbarOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
-            onClick={() => setNavbarOpen(false)}
-          />
-        )}
+        {/* Logout */}
+        <button
+          title="Logout"
+          className="text-gray-600 hover:text-red-500 p-2 rounded-full hover:bg-gray-100 transition"
+        >
+          <Icon icon="mdi:logout" className="w-5 h-5" />
+        </button>
       </div>
     </header>
   );
