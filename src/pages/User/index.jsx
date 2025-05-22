@@ -1,6 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { categories } from '../Categories/CategoryData';
 import { Link } from "react-router-dom";
+import { Icon } from '@iconify/react';
+import plusIcon from '@iconify/icons-mdi/plus';
+import questionIcon from '@iconify/icons-mdi/comment-question-outline';
+import answerIcon from '@iconify/icons-mdi/comment-check-outline';
+import categoryIcon from '@iconify/icons-mdi/view-list-outline';
+
 
 const ProfileDashboard = () => {
   const [viewType, setViewType] = useState('questions'); // 'questions' or 'answers'
@@ -8,7 +14,7 @@ const ProfileDashboard = () => {
   const [selectedSubCategory, setSelectedSubCategory] = useState('All');
 
   const [questions, setQuestions] = useState([
-   
+
     { text: 'What is React?', category: 'Programming', subcategory: 'JavaScript' },
     { text: 'How to center a div?', category: 'Design', subcategory: 'CSS' },
     { text: 'What is a closure?', category: 'Programming', subcategory: 'JavaScript' },
@@ -19,7 +25,7 @@ const ProfileDashboard = () => {
     { text: 'Use flexbox to center div.', category: 'Design', subcategory: 'CSS' },
   ]);
 
-  
+
   const subcategories = useMemo(() => {
     if (selectedCategory === 'All') return ['All'];
     return ['All', ...(categories[selectedCategory]?.items || [])];
@@ -39,36 +45,46 @@ const ProfileDashboard = () => {
 
   return (
     <div className="container pt-24 px-6 max-w-screen-2xl mx-auto">
-      <header className="text-center mb-14">
-        <h1 className="text-5xl font-extrabold text-primaryPurple mb-2">Welcome to Your Profile</h1>
-        <p className="text-gray-600 text-lg max-w-xl mx-auto">
-          Manage your questions, answers, and track your progress all in one place.
+      <header className="text-center mb-12">
+        <div className="flex justify-center items-center gap-3 mb-4">
+          <Icon icon={categoryIcon} className="text-purple-600" width={36} height={36} />
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">Your Knowledge Dashboard</h1>
+        </div>
+        <p className="text-gray-500 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+          Organize and track your questions & answers, filter by category, and stay productive.
         </p>
+        <div className="mt-4 h-1 w-16 bg-purple-600 rounded mx-auto"></div>
       </header>
+
 
       <Link
         to="/add-question"
-        className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition"
+        className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition"
       >
-        Add a New Question
+        <Icon icon={plusIcon} />
+        Add New Question
       </Link>
+
       {/* View Toggle */}
-      <div className="flex justify-center space-x-4 mb-6">
-        <button
-          onClick={() => setViewType('questions')}
-          className={`px-5 py-2 rounded-md font-semibold transition ${viewType === 'questions' ? 'bg-purple-600 text-white' : 'bg-purple-100 text-purple-700'
-            }`}
-        >
-          Latest Questions
-        </button>
-        <button
-          onClick={() => setViewType('answers')}
-          className={`px-5 py-2 rounded-md font-semibold transition ${viewType === 'answers' ? 'bg-purple-600 text-white' : 'bg-purple-100 text-purple-700'
-            }`}
-        >
-          Latest Answers
-        </button>
+      <div className="flex justify-center gap-4 mb-8">
+        {[
+          { label: 'Latest Questions', icon: questionIcon, value: 'questions' },
+          { label: 'Latest Answers', icon: answerIcon, value: 'answers' }
+        ].map(({ label, icon, value }) => (
+          <button
+            key={value}
+            onClick={() => setViewType(value)}
+            className={`flex items-center gap-2 px-6 py-2 rounded-full font-semibold transition-all duration-300 ${viewType === value
+              ? 'bg-purple-700 text-white shadow-lg'
+              : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+              }`}
+          >
+            <Icon icon={icon} />
+            {label}
+          </button>
+        ))}
       </div>
+
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
@@ -131,16 +147,29 @@ const ProfileDashboard = () => {
           {Object.entries(categories).map(([category, data]) => (
             <div
               key={category}
-              className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition"
+              className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-transform"
             >
-              <h3 className="text-xl font-semibold text-primaryPurple mb-3">{category}</h3>
+              <h3 className="text-xl font-semibold text-primaryPurple mb-3 flex items-center gap-2">
+                📚 {category}
+              </h3>
               <p className="text-gray-600 text-sm mb-4">{data.description}</p>
               <ul className="list-disc list-inside text-gray-800 text-sm space-y-1">
                 {data.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li
+                    key={item}
+                    onClick={() => {
+                      setSelectedCategory(category);
+                      setSelectedSubCategory(item);
+                    }}
+                    className="cursor-pointer hover:underline text-purple-600"
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
+
             </div>
+
           ))}
         </div>
       </section>
