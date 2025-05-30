@@ -14,6 +14,7 @@ import AboutUs from "./pages/AboutUs";
 import Categories from "./pages/Categories";
 
 import UserPage from "./pages/User";
+import AddQuestionPage from "./pages/User/AddNewQuestion";
 
 
 function App() {
@@ -43,8 +44,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             
           */}
-          <Route path="/about_us" element={<AboutUs />} />
+        <Route path="/about_us" element={<AboutUs />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/add-question" element={<AddQuestionPage/>} />
         {/* <Route path="/frontend/reactjs" element={<ReactjsPage/>} /> */}
       </Routes>
       <Footer />
