@@ -24,6 +24,7 @@ const ProfileDashboard = () => {
     { text: 'React is a JS library for UI.', category: 'Programming', subcategory: 'JavaScript' },
     { text: 'Use flexbox to center div.', category: 'Design', subcategory: 'CSS' },
   ]);
+  const dummyUserId = 1;
 
 
   const subcategories = useMemo(() => {
@@ -58,7 +59,7 @@ const ProfileDashboard = () => {
 
 
       <Link
-        to="/add-question"
+        to={`/user/${dummyUserId}/add-question`}
         className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white px-6 py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition"
       >
         <Icon icon={plusIcon} />

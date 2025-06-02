@@ -46,7 +46,7 @@ function App() {
           */}
         <Route path="/about_us" element={<AboutUs />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/add-question" element={<AddQuestionPage/>} />
+        <Route path="/user/:id/add-question" element={<AddQuestionPage/>} />
         {/* <Route path="/frontend/reactjs" element={<ReactjsPage/>} /> */}
       </Routes>
       <Footer />

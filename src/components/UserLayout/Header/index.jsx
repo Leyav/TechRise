@@ -1,9 +1,11 @@
 import  { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import Logo from '../../Common/Logo';
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [sticky, setSticky] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,10 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+    const hideHomeButtonOn = ['/add-question']; // Add your own paths
+
+  const showHomeButton = !hideHomeButtonOn.includes(location.pathname);
+  const dummyUserId = 1;
 
   return (
     <header
@@ -29,6 +35,17 @@ const Header = () => {
 
       {/* Right: Actions */}
       <div className="flex items-center gap-4">
+         {/* 🆕 "Go Back Home" Button */}
+        {showHomeButton && (
+          <button
+            onClick={() => navigate(`/user/${dummyUserId}`)}
+            className="text-gray-600 hover:text-blue-600 px-3 py-1.5 text-sm rounded-lg bg-gray-100 hover:bg-gray-200 transition"
+          >
+            <Icon icon="mdi:home" className="w-4 h-4 mr-1 inline" />
+            Home
+          </button>
+        )}
+
         {/* Search */}
         <input
           type="text"
