@@ -68,7 +68,7 @@ const Header = () => {
                 icon="solar:phone-bold"
                 className="text-primary text-3xl inline-block me-2"
               />
-              +1(909) 235-9814
+              +1(987) 654-3210
             </Link>
             <button
         className="hidden lg:block text-primaryPurple bg-lightPurple hover:text-white hover:bg-primaryPurple font-medium text-lg py-4 px-8 rounded-full"

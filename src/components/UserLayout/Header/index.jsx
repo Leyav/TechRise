@@ -84,6 +84,7 @@ const Header = () => {
         {/* Logout */}
         <button
           title="Logout"
+          onClick={() =>{navigate(`/`)}}
           className="text-gray-600 hover:text-red-500 p-2 rounded-full hover:bg-gray-100 transition"
         >
           <Icon icon="mdi:logout" className="w-5 h-5" />

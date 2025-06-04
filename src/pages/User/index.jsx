@@ -6,12 +6,14 @@ import plusIcon from '@iconify/icons-mdi/plus';
 import questionIcon from '@iconify/icons-mdi/comment-question-outline';
 import answerIcon from '@iconify/icons-mdi/comment-check-outline';
 import categoryIcon from '@iconify/icons-mdi/view-list-outline';
+import { useNavigate } from "react-router-dom";
 
 
 const ProfileDashboard = () => {
   const [viewType, setViewType] = useState('questions'); // 'questions' or 'answers'
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedSubCategory, setSelectedSubCategory] = useState('All');
+  const navigate = useNavigate();
 
   const [questions, setQuestions] = useState([
 
@@ -161,6 +163,7 @@ const ProfileDashboard = () => {
                     onClick={() => {
                       setSelectedCategory(category);
                       setSelectedSubCategory(item);
+                      navigate(`/user/${dummyUserId}/${encodeURIComponent(item)}`);
                     }}
                     className="cursor-pointer hover:underline text-purple-600"
                   >

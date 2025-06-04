@@ -9,12 +9,13 @@ import ScrollToTop from "./components/Layout/ScrollToTop";
 import Home from "./pages/Home";
 
 // import Contact from "./pages/Contact";
-// import Login from "./pages/Login";
+
 import AboutUs from "./pages/AboutUs";
 import Categories from "./pages/Categories";
 
 import UserPage from "./pages/User";
 import AddQuestionPage from "./pages/User/AddNewQuestion";
+import SubCategoryPage from "./pages/User/SubCateogryQA";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path="/about_us" element={<AboutUs />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/user/:id/add-question" element={<AddQuestionPage/>} />
+        <Route path="/user/:id/:subcategory" element={<SubCategoryPage/>} />
         {/* <Route path="/frontend/reactjs" element={<ReactjsPage/>} /> */}
       </Routes>
       <Footer />
